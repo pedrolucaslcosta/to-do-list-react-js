@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faPlus, faXmark} from '@fortawesome/free-solid-svg-icons'
 
 import './App.css';
 import '../scss/custom.scss';
@@ -94,7 +92,6 @@ function App() {
   // Update task
   // --------------------------------------------------
   const updateTask = () => {
-    // todoList.filter((task) => task.id !== updateData.id)
     let filter = [...todoList].filter((task) => task.id !== updateData.id)
     let updatedObject = [...filter, updateData]
     setTodoList(updatedObject);
@@ -102,7 +99,6 @@ function App() {
   }
 
   return (
-
     <div className="container App p-0 mt-3">
       <div className="card shadow-lg border-secondary bg-dark text-light col-8 mx-auto">
         <div className="card-body">
