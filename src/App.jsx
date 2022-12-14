@@ -1,49 +1,55 @@
+// React 
 import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+// CSS
 import './App.css';
 import '../scss/custom.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Components
 import { Task } from './components/Task';
-import { UpdateTaskForm } from './components/UpdateTaskForm';
 import { AddTaskForm } from './components/AddTaskForm';
+
+// Font Awesome Icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInbox } from '@fortawesome/free-solid-svg-icons';
+
+// --------------------------------------------------
+// ---------- App -----------------------------------
 
 function App() {
 
   // Tasks State
-  // --------------------------------------------------
   const [todoList, setTodoList] = useState([
-    {id: 1, name: 'Buy milk', status: true},
-    {id: 2, name: 'Drink water', status: false},
-    {id: 3, name: 'Do homework', status: false}
+    {id: (Math.random().toString(16).slice(2)), name: 'Buy milk', status: true},
+    {id: (Math.random().toString(16).slice(2)), name: 'Drink water', status: false},
+    {id: (Math.random().toString(16).slice(2)), name: 'Do homework', status: false}
   ]);
-
-  localStorage.setItem('todoList', JSON.stringify(todoList));
   
   // Temp State
-  // --------------------------------------------------
   const [newTask, setNewTask] = useState('');
   const [updateData, setUpdateData] = useState('');
   
+  // Handle new task
   const handleNewTask = (e) => {
     setNewTask(e.target.value);
   };
 
+  // Handle update task
   const handleUpdateTask = (id) => {
     const task = todoList.filter((task) => task.id == id)
     setUpdateData({
       id: task.id,
       name: task.name,
-      status: task.status ? true : false
+      status: task.status
     })
   }
 
   // Add task
-  // --------------------------------------------------
   const addTask = () => {
     if(newTask) {
       const task = {
-        id: todoList.length + 1,
+        id: Math.random().toString(16).slice(2),
         name: newTask,
         status: false,
       }
@@ -53,13 +59,11 @@ function App() {
   }
   
   // Delete task
-  // --------------------------------------------------
   const deleteTask = (id) => {
     setTodoList(todoList.filter((task) => task.id !== id));
   }
 
   // Complete task
-  // --------------------------------------------------
   const completeTask = (id) => {
     setTodoList(
       todoList.map((task) => {
@@ -73,47 +77,32 @@ function App() {
   }
 
   // Cancel update
-  // --------------------------------------------------
   const cancelUpdate = () => {
     setUpdateData('');
   }
 
   // Change task for update
-  // --------------------------------------------------
   const changeTask = (e) => {
     const task = {
       id: updateData.id,
       name: e.target.value,
-      status: updateData.status ? true : false
+      status: updateData.status
     }
     setUpdateData(task);
   }
 
   // Update task
-  // --------------------------------------------------
-  const updateTask = () => {
-    let filter = [...todoList].filter((task) => task.id !== updateData.id)
-    let updatedObject = [...filter, updateData]
-    setTodoList(updatedObject);
+  const updateTask = () => {    
+    setTodoList(todoList.map(task => task.id === updateData.id ? updateData : task));
     setUpdateData('');
   }
 
+  // App Return
   return (
     <div className="container App p-0 mt-3">
-      <div className="card shadow-lg border-secondary bg-dark text-light col-8 mx-auto">
+      <div className="card border-secondary bg-dark text-light col-lg-4 col-8 mx-auto">
         <div className="card-body">
-          <h5 className="card-title mb-3">To-do List</h5>
-
-          {updateData && updateData ? (
-
-            <UpdateTaskForm
-            updateData={updateData}
-            cancelUpdate={cancelUpdate}
-            changeTask={changeTask}
-            updateTask={updateTask}
-            />
-
-          ) : (
+          <h5 className="card-title mb-3"><FontAwesomeIcon icon={faInbox}/> To-do List</h5>
 
             <AddTaskForm
             newTask={newTask}
@@ -121,20 +110,16 @@ function App() {
             addTask={addTask}
             />
 
-          ) }  
-
           <ul className="list-group">
 
             {todoList && todoList.length ? '' : 'No tasks...'}
             
             {todoList
             
-            // Sort tasks in id order
-            .sort((a, b) => a.id > b.id ? 1 : -1)
-            
             // Display tasks
             .map((task) => {
               return (
+                
                 <Task 
                   id={task.id}
                   name={task.name}
@@ -145,9 +130,11 @@ function App() {
                   setUpdateData={setUpdateData}
                   updateData={updateData}
                   changeTask={changeTask}
-
-                  key={task.id.toString()}
+                  updateTask={updateTask}
+                  cancelUpdate={cancelUpdate}
+                  key={task.id}
                 />
+
               )
             })}
           </ul>
