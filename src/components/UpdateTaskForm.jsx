@@ -1,16 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 export const UpdateTaskForm = ({updateData, updateTask, cancelUpdate, changeTask}) => (
-    <li className="list-group-item list-group-item-action border-secondary bg-dark text-light d-flex justify-content-between align-items-center">
-
+    <li className="list-group-item list-group-item-action rounded ps-1 my-2 border border-secondary bg-dark text-light d-flex justify-content-between align-items-center">
+      
     <div className="d-flex justify-content-between">
+      
         <input 
+            autoFocus
+            // style={{backgroundColor: '#222'}}
             value={updateData && updateData.name }
             onChange={ (e) => changeTask(e)}
             type="text" 
-            className="form-control bg-dark text-light border-secondary"  
+            className="form-control border-0 bg-dark text-light border-secondary"  
             placeholder="Edit task" 
             aria-label="Edit task"
             onKeyPress={
@@ -26,9 +29,10 @@ export const UpdateTaskForm = ({updateData, updateTask, cancelUpdate, changeTask
         
       </div>
       
-      <div className='d-flex gap-1'>
-        <button className="btn btn-primary" onClick={updateTask} type="button"><FontAwesomeIcon icon={faCheck}/></button>
-        <button className="btn btn-outline-secondary" onClick={cancelUpdate} type="button">Cancel</button>
+      <div className='d-flex gap-2'>
+      <button className="btn btn-sm btn-outline-secondary text-light fw-semibold" onClick={cancelUpdate} type="button">Cancel</button>
+        <button className="btn btn-sm btn-primary fw-semibold px-3" onClick={updateTask} type="button">Save</button>
+        
       </div>
 
       </li>

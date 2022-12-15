@@ -12,9 +12,8 @@ import { AddTaskForm } from './components/AddTaskForm';
 
 // Font Awesome Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInbox } from '@fortawesome/free-solid-svg-icons';
+import { faInbox, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-// --------------------------------------------------
 // ---------- App -----------------------------------
 
 function App() {
@@ -81,6 +80,12 @@ function App() {
     setUpdateData('');
   }
 
+    // Cancel add
+    const cancelAdd = () => {
+      setNewTask('');
+      handleVisibility();
+    }
+
   // Change task for update
   const changeTask = (e) => {
     const task = {
@@ -97,20 +102,43 @@ function App() {
     setUpdateData('');
   }
 
+  const [visibility, setVisibility] = useState(false);
+  const handleVisibility = e => {
+    setVisibility(current => !current);
+  }
+  
+
   // App Return
   return (
     <div className="container App p-0 mt-3">
       <div className="card border-secondary bg-dark text-light col-lg-4 col-8 mx-auto">
+        <div className='card-header border-secondary p-3 d-flex justify-content-between align-middle'>
+          <h5 className="card-title"><FontAwesomeIcon icon={faInbox}/> To-do List</h5>
+          <button className="btn btn-primary fw-semibold text-light btn-sm px-4 ms-3" onClick={handleVisibility} type="button"><FontAwesomeIcon icon={faPlus}/></button>
+        </div>
         <div className="card-body">
-          <h5 className="card-title mb-3"><FontAwesomeIcon icon={faInbox}/> To-do List</h5>
+          <div className=''>
+            
+            
+            {visibility && 
+              <AddTaskForm
+              newTask={newTask}
+              handleNewTask={handleNewTask}
+              handleVisibility={handleVisibility}
+              addTask={addTask}
+              cancelAdd={cancelAdd}
+              />
+            }
+            
+          </div>
 
-            <AddTaskForm
-            newTask={newTask}
-            handleNewTask={handleNewTask}
-            addTask={addTask}
-            />
+          
+          
 
-          <ul className="list-group">
+          
+
+
+          <ul className="list-group mt-3">
 
             {todoList && todoList.length ? '' : 'No tasks...'}
             

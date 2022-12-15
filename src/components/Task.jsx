@@ -14,7 +14,7 @@ export const Task = (props) =>
   
   ) : (
 
-    <li className="list-group-item list-group-item-action border-secondary bg-dark text-light d-flex justify-content-between align-items-center">
+    <li className="list-group-item list-group-item-action border-0 border-start-0 border-end-0 rounded-0 border-secondary bg-dark text-light d-flex justify-content-between align-items-center">
       <div>
         <input
           className="form-check-input bg-dark border-secondary me-2"
