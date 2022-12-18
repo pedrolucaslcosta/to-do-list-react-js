@@ -120,7 +120,7 @@ function App() {
   return (
     <div>
       <div className="container App p-0 mt-3">
-        <div className="card border-secondary bg-dark text-light col-lg-4 col-8 mx-auto">
+        <div className="card border-secondary bg-dark text-light col-lg-4 col-8 col-sm-12 mx-auto">
           <div className="card-header border-secondary p-3 d-flex justify-content-between align-middle">
             <h5 className="card-title">
               <FontAwesomeIcon icon={faInbox} /> To-do List
