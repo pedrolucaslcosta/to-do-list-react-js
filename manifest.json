@@ -1,0 +1,22 @@
+{
+  "background_color": "#333333",
+  "description": "To-do List App With React JS",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "To-do List",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "To-do List",
+  "start_url": "/",
+  "theme_color": "#434343",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "en"
+}
