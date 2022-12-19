@@ -36,7 +36,7 @@ export const AddTaskForm = ({ newTask, addTask, handleNewTask, cancelAdd }) => (
         Cancel
       </button>
       <button
-        className="btn btn-sm btn-primary fw-semibold px-3"
+        className="btn btn-sm btn-secondary text-light fw-semibold px-3"
         onClick={addTask}
         type="button"
       >
