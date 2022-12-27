@@ -161,15 +161,7 @@ function App() {
                   )}
                 </div>
                 <ul className="list-group mt-3">
-                  {/* <li className="list-group-item list-group-item-action border-0 bg-dark border-secondary text-light d-flex justify-content-between align-items-center">
-                    <a
-                      className="text-secondary text-decoration-none"
-                      onClick={handleVisibility}
-                      type="button"
-                    >
-                      <FontAwesomeIcon icon={faPlus} /> Add Task
-                    </a>
-                  </li> */}
+
                   {todoList && todoList.length ? "" : "No tasks..."}
 
                   {todoList
