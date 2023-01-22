@@ -12,10 +12,10 @@ export const Task = (props) =>
       changeTask={props.changeTask}
     />
   ) : (
-    <li className="list-group-item list-group-item-action border-0 bg-dark border-secondary text-light d-flex justify-content-between align-items-center">
+    <li className="list-group-item list-group-item-action border-0 rounded-pill d-flex justify-content-between align-items-center">
       <div>
         <input
-          className="form-check-input bg-dark border-secondary me-2"
+          className="form-check-input me-2"
           type="checkbox"
           defaultChecked={props.status ? "checked" : ""}
           onChange={() => props.completeTask(props.id)}
@@ -24,8 +24,8 @@ export const Task = (props) =>
         <label
           className={
             props.status
-              ? "form-label me-2 text-muted text-decoration-line-through"
-              : "form-label me-2"
+              ? "form-label me-2 mb-0 text-muted text-decoration-line-through"
+              : "form-label me-2 mb-0"
           }
         >
           {props.name}

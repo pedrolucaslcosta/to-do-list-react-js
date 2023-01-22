@@ -11,6 +11,8 @@ import "bootstrap/js/dist/collapse.js";
 import "bootstrap/js/dist/offcanvas.js";
 import "bootstrap/js/dist/modal.js";
 
+import { Camera } from 'react-feather';
+
 // Components
 import { Task } from "./components/Task";
 import { AddTaskForm } from "./components/AddTaskForm";
@@ -132,25 +134,111 @@ function App() {
   // App Return
   return (
     <div>
-      <div className="container App p-0 mt-3 mb-5">
-        <div className="card col-lg-6 col-md-10 col-12 col-sm-12 border-secondary bg-dark text-light mx-auto">
-          <div className="card-header border-secondary p-3 d-flex justify-content-between align-middle">
-            <h5 className="card-title">
-              <FontAwesomeIcon icon={faInbox} /> To-do List
+
+      <nav className="navbar navbar-expand-lg bg-white border-bottom sticky-top shadow-sm">
+        <div className="container-fluid">
+          <a className="navbar-brand fw-semibold text-dark" href="#"><FontAwesomeIcon icon={faInbox} /> To-do List</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Link</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form className="d-flex" role="search">
+              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+              <button className="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div> */}
+        </div>
+      </nav>
+
+      <div 
+        className="row d-flex"
+        style={{height: '100%', width: '100%'}}
+      >
+
+        {/* <div className="col-2">
+          <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
+            <ul className="nav nav-pills flex-column mb-auto">
+              <li className="nav-item">
+                <a href="#" className="nav-link active rounded-pill" aria-current="page">
+                  <FontAwesomeIcon icon={faInbox} /> Inbox
+                </a>
+              </li> */}
+              {/* <li>
+                <a href="#" className="nav-link text-white">
+
+                <FontAwesomeIcon icon={faInbox}/> Inbox
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link text-white">
+
+                  Orders
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link text-white">
+
+                  Products
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link text-white">
+
+                  Customers
+                </a>
+              </li> */}
+            {/* </ul>
+            <hr />
+            <div className="dropdown">
+              <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
+                <strong>mdo</strong>
+              </a>
+              <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a className="dropdown-item" href="#">New project...</a></li>
+                <li><a className="dropdown-item" href="#">Settings</a></li>
+                <li><a className="dropdown-item" href="#">Profile</a></li>
+                <li><hr className="dropdown-divider" /></li>
+                <li><a className="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> */}
+
+        <div className="col-12 d-flex justify-content-center">
+
+  
+        <div className="card col-12 col-lg-8 mx-0 mx-lg-5 mt-3 border-0 ">
+          <div className="card-header p-3 bg-white">
+            <h5 className="card-title mb-0">
+              <FontAwesomeIcon icon={faInbox} /> Inbox
             </h5>
             <button
-              className="btn btn-outline-secondary fw-semibold text-light position-fixed bottom-0 end-0 mb-3 me-3"
+              className="btn btn-primary px-3 fw-semibold text-light rounded-pill position-fixed bottom-0 end-0 m-3 z-index"
+              style={{zIndex: '999999'}}
               onClick={handleVisibility}
               type="button"
             >
               <FontAwesomeIcon icon={faPlus} /> Add Task
             </button>
           </div>
-          <div className="card-body">
+          <div className="card-body col-12 p-0 p-lg-3">
             <div className="">
               <div className="">
                 <div className="">
-                  {visibility && (
+                  {/* {visibility && (
                     <AddTaskForm
                       newTask={newTask}
                       handleNewTask={handleNewTask}
@@ -158,7 +246,7 @@ function App() {
                       addTask={addTask}
                       cancelAdd={cancelAdd}
                     />
-                  )}
+                  )} */}
                 </div>
                 <ul className="list-group mt-3">
 
@@ -186,11 +274,40 @@ function App() {
                       );
                     })}
                 </ul>
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
+
+        </div>
+
+      </div>
+
+
+      
+      <button 
+      type="button" 
+      className="btn btn-primary px-3 fw-semibold text-light rounded-pill position-fixed bottom-0 end-0 m-3 z-index"
+      style={{zIndex: '999999'}}
+      data-bs-toggle="modal" 
+      data-bs-target="#addTaskModal"
+      >
+        
+      <FontAwesomeIcon icon={faPlus}/> Add Task
+
+      </button>
+
+      <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <AddTaskForm
+          newTask={newTask}
+          handleNewTask={handleNewTask}
+          handleVisibility={handleVisibility}
+          addTask={addTask}
+          cancelAdd={cancelAdd}
+        />
+      </div>
+
     </div>
   );
 }
